@@ -32,7 +32,7 @@ end
 
 if not shared.VapeDeveloper then
 	local _, subbed = pcall(function()
-		return game:HttpGet('https://github.com/VapeVoidware/VWRewrite')
+		return game:HttpGet('https://github.com/bypassv5/VWRewrite')
 	end)
 	local commit = subbed:find('currentOid')
 	commit = commit and subbed:sub(commit + 13, commit + 52) or nil
@@ -139,7 +139,7 @@ local function install_profiles(num)
     local httpservice = game:GetService('HttpService')
     local guiprofiles = {}
     local profilesfetched
-    local repoOwner = shared.RiseMode and "VapeVoidware/RiseProfiles" or "Erchobg/VoidwareProfiles"
+    local repoOwner = shared.RiseMode and "VapeVoidware/RiseProfiles" or "bypassv5/VoidwareProfiles"
     local function vapeGithubRequest(scripturl)
         local suc, res = pcall(function() return game:HttpGet('https://raw.githubusercontent.com/'..repoOwner..'/main/'..scripturl, true) end)
         if not isfolder(baseDirectory.."profiles") then
@@ -183,7 +183,7 @@ local function install_profiles(num)
     task.spawn(function()
         local res1
         if num == 1 then
-            res1 = "https://api.github.com/repos/"..repoOwner.."/contents/Rewrite"
+            res1 = "https://api.github.com/repos/Erchobg/VoidwareProfiles/contents/Rewrite"
         end
         res = game:HttpGet(res1, true)
         if res ~= '404: Not Found' then 
@@ -211,7 +211,7 @@ local function are_installed_1()
     if isfile(baseDirectory..'libraries/profilesinstalled5.txt') then return true else return false end
 end
 if not are_installed_1() then install_profiles(1) end
-local url = shared.RiseMode and "https://github.com/VapeVoidware/VWRise/" or "https://github.com/VapeVoidware/VWRewrite"
+local url = shared.RiseMode and "https://github.com/bypassv5/VWRise/" or "https://github.com/bypassv5/VWRewrite"
 local commit = "main"
 writefile(baseDirectory.."commithash2.txt", commit)
 commit = 'f826e8295dc6fc66d9dc9a0d87b9ab9fbbe66246'
@@ -227,7 +227,7 @@ local function vapeGithubRequest(scripturl, isImportant)
     end
     local suc, res
     if commit == nil then commit = "main" end
-    local url = (scripturl == "MainScript.lua" or scripturl == "GuiLibrary.lua") and shared.RiseMode and "https://raw.githubusercontent.com/VapeVoidware/VWRise/" or "https://raw.githubusercontent.com/VapeVoidware/VWRewrite/"
+    local url = (scripturl == "MainScript.lua" or scripturl == "GuiLibrary.lua") and shared.RiseMode and "https://raw.githubusercontent.com/VapeVoidware/VWRise/" or "https://raw.githubusercontent.com/bypassv5/VWRewrite/"
     suc, res = pcall(function() return game:HttpGet(url..commit.."/"..scripturl, true) end)
     if not suc or res == "404: Not Found" then
         if isImportant then
